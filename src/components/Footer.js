@@ -10,13 +10,13 @@ function Footer() {
       {/* Social Media Icons */}
       <div className="absolute bottom-4 right-4 flex space-x-3 md:space-x-4">
         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-          <PiFacebookLogoDuotone className="text-cyan-950 hover:text-amber-600 w-5 h-5 md:w-6 md:h-6" />
+          <PiFacebookLogoDuotone className="text-cyan-950 hover:text-orange-600 w-5 h-5 md:w-6 md:h-6" />
         </a>
         <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-          <PiTwitterLogoDuotone className="text-cyan-950 hover:text-amber-600 w-5 h-5 md:w-6 md:h-6" />
+          <PiTwitterLogoDuotone className="text-cyan-950 hover:text-orange-600 w-5 h-5 md:w-6 md:h-6" />
         </a>
         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-          <PiInstagramLogoDuotone className="text-cyan-950 hover:text-amber-600 w-5 h-5 md:w-6 md:h-6" />
+          <PiInstagramLogoDuotone className="text-cyan-950 hover:text-orange-600 w-5 h-5 md:w-6 md:h-6" />
         </a>
       </div>
     </footer>
