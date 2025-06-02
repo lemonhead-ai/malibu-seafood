@@ -1,0 +1,181 @@
+import React, { useState } from 'react';
+
+// Import menu images
+import grilledFishSalad from '../assets/images/grilled-fish-salad.jpg';
+import searedTunaSteak from '../assets/images/seared-tuna-steak.jpg';
+import shrimpCeviche from '../assets/images/shrimp-ceviche.jpg';
+
+function Menu() {
+  const [currentItem, setCurrentItem] = useState(0);
+  const [touchStartX, setTouchStartX] = useState(null);
+
+  const menuItems = [
+    { 
+      name: 'Grilled Fish Salad', 
+      price: '$12', 
+      calories: '320 kcal', 
+      carbs: '33.9g', 
+      protein: '6.3g', 
+      fat: '9.2g', 
+      img: grilledFishSalad, 
+      ingredients: 'badger flame beets, baby carrots, tomatoes, mango salsa, red onions, bacon' 
+    },
+    { 
+      name: 'Seared Tuna Steak', 
+      price: '$15', 
+      calories: '400 kcal', 
+      carbs: '10g', 
+      protein: '35g', 
+      fat: '12g', 
+      img: searedTunaSteak, 
+      ingredients: 'tuna, soy glaze, sesame seeds, green beans' 
+    },
+    { 
+      name: 'Shrimp Ceviche', 
+      price: '$10', 
+      calories: '250 kcal', 
+      carbs: '15g', 
+      protein: '20g', 
+      fat: '5g', 
+      img: shrimpCeviche, 
+      ingredients: 'shrimp, lime, cilantro, avocado, red onions' 
+    },
+  ];
+
+  const handleNext = () => {
+    setCurrentItem((currentItem + 1) % menuItems.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentItem((currentItem - 1 + menuItems.length) % menuItems.length);
+  };
+
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    if (touchStartX === null) return;
+    const touchEndX = e.touches[0].clientX;
+    const diff = touchStartX - touchEndX;
+
+    if (diff > 50) {
+      handleNext();
+      setTouchStartX(null);
+    } else if (diff < -50) {
+      handlePrev();
+      setTouchStartX(null);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setTouchStartX(null);
+  };
+
+  const nextItem = menuItems[(currentItem + 1) % menuItems.length];
+  const currentItemNameWords = menuItems[currentItem].name.split(' ');
+
+  return (
+    <div 
+      className="flex flex-col items-center justify-center min-h-screen p-4 md:p-6 bg-gradient-to-bl from-gray-50 to-gray-200 font-sans relative overflow-hidden"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Main Content Area (Image + Details) */}
+      <div className="flex flex-col lg:flex-row items-center justify-center w-full max-w-sm md:max-w-3xl lg:max-w-5xl">
+         {/* Image Section with Circular Background */}
+        <div className="relative flex items-center justify-center lg:w-1/2 w-full mb-6 md:mb-8 lg:mb-0">
+          <div className="relative w-[250px] h-[250px] md:w-[400px] md:h-[400px] bg-white rounded-full shadow-xl flex items-center justify-center">
+             {/* Item Numbering (positioned on the large circle, hidden on touch screens) */}
+             <div className="absolute bottom-6 left-6 text-6xl md:text-8xl font-bold text-gray-200 opacity-75 select-none hidden md:block">
+               {`0${currentItem + 1}`}
+             </div>
+             {/* Food Image */}
+              <div className="relative w-40 h-40 md:w-64 md:h-64 rounded-full overflow-hidden shadow-md">
+                <img 
+                  src={menuItems[currentItem].img} 
+                  alt={menuItems[currentItem].name} 
+                  className="w-full h-full object-cover"
+                />
+                {/* Price Bubble */}
+                <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4 bg-white rounded-full p-2 md:p-4 shadow-lg flex items-center justify-center text-base md:text-2xl font-bold text-gray-800 border-2 border-orange-500">
+                  {menuItems[currentItem].price}
+                </div>
+              </div>
+          </div>
+        </div>
+
+        {/* Details Section */}
+        <div className="lg:w-1/2 w-full lg:pl-12 text-center lg:text-left mt-6 lg:mt-0">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl text-gray-800 mb-1 md:mb-4 leading-tight">
+            <span className="font-bold">{currentItemNameWords[0]}</span>
+            {currentItemNameWords.length > 1 && (
+              <span className="font-thin ml-1 md:ml-2">{currentItemNameWords[1]}</span>
+            )}
+          </h2>
+          {currentItemNameWords.length > 2 && (
+            <div className="mt-0.5 md:mt-2 inline-block shadow">
+              <span className="px-1 md:px-2 py-0.5 md:py-1 bg-orange-500 text-white text-base md:text-xl font-bold rounded-md inline-block">
+                {currentItemNameWords.slice(2).join(' ')}
+              </span>
+            </div>
+          )}
+          <p className="text-sm md:text-lg text-gray-600 mb-1 md:mb-2">Ingredients:</p>
+          <p className="text-sm md:text-xl text-gray-700 mb-4 md:mb-8 leading-relaxed">{menuItems[currentItem].ingredients}</p>
+
+          {/* Nutritional Info */}
+          <div className="flex justify-center lg:justify-start space-x-3 md:space-x-8 mb-6 md:mb-12">
+            <div className="flex flex-col items-center">
+              <div className="bg-gray-200 rounded-full p-2 md:p-4 text-gray-800 font-bold text-xs md:text-sm w-10 h-10 md:w-16 md:h-16 flex items-center justify-center">{menuItems[currentItem].calories}</div>
+              <span className="text-gray-600 text-xs md:text-sm mt-1 md:mt-2">Calories</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="bg-gray-200 rounded-full p-2 md:p-4 text-gray-800 font-bold text-xs md:text-sm w-10 h-10 md:w-16 md:h-16 flex items-center justify-center">{menuItems[currentItem].carbs}</div>
+              <span className="text-gray-600 text-xs md:text-sm mt-1 md:mt-2">Carbo</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="bg-gray-200 rounded-full p-2 md:p-4 text-gray-800 font-bold text-xs md:text-sm w-10 h-10 md:w-16 md:h-16 flex items-center justify-center">{menuItems[currentItem].protein}</div>
+              <span className="text-gray-600 text-xs md:text-sm mt-1 md:mt-2">Protein</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="bg-gray-200 rounded-full p-2 md:p-4 text-gray-800 font-bold text-xs md:text-sm w-10 h-10 md:w-16 md:h-16 flex items-center justify-center">{menuItems[currentItem].fat}</div>
+              <span className="text-gray-600 text-xs md:text-sm mt-1 md:mt-2">Fat</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Item Numbering, Pagination, and Next button below main content (visible on md and up)*/}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center space-x-4 hidden md:flex z-20">
+         {/* Item numbering */}
+         <span className="text-base md:text-xl font-semibold text-gray-800">{`0${currentItem + 1}/${menuItems.length}`}</span>
+         {/* Pagination dots */}
+         <div className="flex space-x-2 md:space-x-3">
+            {menuItems.map((_, index) => (
+              <button
+                key={index}
+                className={`w-2 h-2 md:w-4 md:h-4 rounded-full ${currentItem === index ? 'bg-orange-500' : 'bg-gray-400'}`}
+                onClick={() => setCurrentItem(index)}
+              ></button>
+            ))}
+          </div>
+        {/* Next button */}
+        <button
+          onClick={handleNext}
+          className="text-gray-600 text-sm md:text-lg cursor-pointer focus:outline-none"
+        >
+          NEXT - {nextItem.name}
+        </button>
+      </div>
+
+       {/* Item numbering for touch screens */}
+       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center justify-center mt-2 md:hidden z-20">
+            <span className="text-base md:text-xl font-semibold text-gray-800">{`0${currentItem + 1}/${menuItems.length}`}</span>
+          </div>
+
+    </div>
+  );
+}
+
+export default Menu;
