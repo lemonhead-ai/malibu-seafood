@@ -1,38 +1,64 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import heroMalibu from '../assets/images/hero-malibu.jpg';
+import { motion } from 'framer-motion';
+
+// Create a motion-enabled Link component
+const MotionLink = motion(Link);
 
 function Home() {
   return (
-    <div className="flex flex-col items-center justify-center h-full p-4 md:p-6 text-center">
-      {/* Hero Section with Overlay */}
-      <div className="relative w-full max-w-sm md:max-w-4xl h-40 md:h-64 mb-4 md:mb-8">
-        <img 
-          src= {heroMalibu}
-          alt="Malibu Seafood Hero" 
-          className="w-full h-full object-cover rounded-lg shadow-lg"
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-40 rounded-lg flex items-center justify-center">
-          <h1 className="text-2xl md:text-5xl text-white font-bold px-2 md:px-4">Welcome to Malibu Seafood</h1>
-        </div>
-      </div>
+    <motion.div
+      className="flex flex-col md:flex-row h-screen bg-sky-950 text-white overflow-hidden"
+    >
+      {/* Left Section: Text and Button */}
+      <div className="flex-1 flex flex-col items-start justify-center p-8 md:p-16 h-full overflow-y-auto">
 
-      {/* Introduction Text */}
-      <div className="max-w-xl md:max-w-2xl mb-4 md:mb-8 px-2 md:px-4">
-        <p className="text-sm md:text-lg text-gray-700 leading-relaxed">
-          Indulge in the freshest seafood delights at Malibu Seafood, where the ocean's bounty meets culinary excellence. 
-          From grilled fish salads to succulent shrimp ceviche, our menu offers a taste of the coast crafted with love and skill. 
+        {/* Main Title */}
+        <motion.h1
+          className="text-4xl md:text-6xl font-bold mb-4 text-left"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Experience Fresh <br className="hidden md:block" /> Malibu Seafood
+        </motion.h1>
+
+        {/* Introduction Text */}
+        <motion.p
+          className="text-lg md:text-xl text-gray-300 leading-relaxed mb-8 text-left"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          Indulge in the freshest seafood delights at Malibu Seafood, where the ocean's bounty meets culinary excellence.
+          From grilled fish salads to succulent shrimp ceviche, our menu offers a taste of the coast crafted with love and skill.
           Join us for an unforgettable dining experience by the sea!
-        </p>
+        </motion.p>
+
+        {/* Call to Action Button */}
+        <MotionLink
+          to="/reservation"
+          className="bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition duration-300 text-lg font-semibold"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          whileHover={{ scale: 1.05 }}
+        >
+          Book a Table
+        </MotionLink>
+
       </div>
 
-      {/* Call to Action Button */}
-      <Link to="/menu">
-        <button className="bg-orange-500 text-white px-4 py-2 md:px-6 md:py-3 rounded-lg hover:bg-orange-600 transition duration-300 text-sm md:text-lg">
-          Explore Our Menu
-        </button>
-      </Link>
-    </div>
+      {/* Right Section: Hero Image */}
+      <div className="flex-1 overflow-hidden">
+        <img
+          src={heroMalibu}
+          alt="Malibu Seafood Hero"
+          className="w-full h-full object-cover"
+        />
+      </div>
+    </motion.div>
   );
 }
 

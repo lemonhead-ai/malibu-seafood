@@ -8,6 +8,7 @@ import Reservations from './components/Reservations';
 import Events from './components/Events';
 import Contact from './components/Contact';
 import Menu from './components/Menu';
+import FloatingSocialIcons from './components/FloatingSocialIcons';
 
 function App() {
   const [reservations, setReservations] = useState([]);
@@ -19,7 +20,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-bl from-gray-50 to-gray-200 font-sans flex flex-col">
       <Header className="fixed top-0 z-50 w-full"/>
-      <main className="flex-grow mt-16">
+      <main className="flex-grow -mt-3 -mb-11">
         <Routes>
           <Route 
             path="/" 
@@ -47,6 +48,7 @@ function App() {
           />
         </Routes>
       </main>
+      <FloatingSocialIcons />
       <Footer className="sticky bottom-0 z-50"/>
     </div>
   );
