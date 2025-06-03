@@ -24,7 +24,7 @@ function Events() {
   const [inView, setInView] = useState(false);
 
   // Get current date and determine the active day
-  const currentDate = new Date('2025-06-02T18:00:00Z');
+  const currentDate = new Date();
   const currentDay = currentDate.toLocaleDateString('en-US', { weekday: 'long' });
 
   useEffect(() => {
@@ -297,7 +297,7 @@ function Events() {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.5 + index * 0.1 }}
                   >
-                    <Link to={`/reservation?date=${offer.date}`}>
+                    <Link to={`/reservations?date=${offer.date}`}>
                       <motion.button 
                         className="bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors duration-300 text-base md:text-lg font-medium w-full shadow-md"
                         variants={buttonVariants}

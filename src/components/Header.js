@@ -170,7 +170,7 @@ function Header() {
           whileTap={{ scale: 0.95 }}
         >
           <Link 
-            to="/reservation" 
+            to="/reservations" 
             className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 shadow-lg transition-all duration-300 hover:shadow-xl"
           >
             Reserve

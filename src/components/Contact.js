@@ -1,118 +1,286 @@
 import React, { useState } from 'react';
-import { PiFacebookLogoDuotone, PiTwitterLogoDuotone, PiInstagramLogoDuotone } from 'react-icons/pi'; // Import icons
+import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Send, Clock, Users } from 'lucide-react';
 
 function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
+    subject: '',
     message: '',
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
     console.log('Contact Form Submission:', formData);
     alert('Message sent successfully!');
-    e.target.reset();
-    setFormData({ name: '', email: '', message: '' });
+    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    setIsSubmitting(false);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4 md:p-6 bg-gradient-to-bl from-gray-50 to-gray-200 font-sans">
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6 md:mb-8">Contact Us</h1>
-      <div className="flex flex-col md:flex-row items-center md:items-start justify-center w-full max-w-4xl">
-        {/* Contact Information */}
-        <div className="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8 text-center md:text-left">
-          <p className="text-lg md:text-xl text-gray-700 mb-4">Have questions or want to make a reservation?</p>
-          <p className="text-md md:text-lg text-gray-600 mb-2">Call us at: <span className="font-semibold">(123) 456-7890</span></p>
-          <p className="text-md md:text-lg text-gray-600 mb-6">Email us at: <span className="font-semibold">info@malibuseafood.com</span></p>
-          <p className="text-md md:text-lg text-gray-600 mb-2">Visit us at:</p>
-          <p className="text-md md:text-lg text-gray-700 font-semibold">123 Ocean Drive, Malibu, CA 90265</p>
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-100">
+      {/* Header Section */}
+      <div className="relative overflow-hidden bg-gradient-to-r from-orange-600 to-orange-700 text-white">
+        <div className="absolute inset-0 bg-black bg-opacity-10"></div>
+        <div className="relative max-w-6xl mx-auto px-4 py-16 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in-up">
+            Get In Touch
+          </h1>
+          <p className="text-xl md:text-2xl opacity-90 animate-fade-in-up animation-delay-200">
+            We'd love to hear from you. Let's start a conversation.
+          </p>
         </div>
-
-        {/* Map Embedding */}
-        <div className="w-full md:w-1/2 h-64 md:h-80 rounded-lg overflow-hidden shadow-lg">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3301.42410580s086!2d-118.68942468478436!3d34.038507180609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80e81ee3334d01c7:0x9e77a6c822213118!2sMalibu%20Seafood%20Fresh%20Fish%20Market%20and%20Patio%20Cafe!5e0!3m2!1sen!2sus!4v1647475730711!5m2!1sen!2sus"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen=""
-            loading="lazy"
-            title="Location of Malibu Seafood on Google Maps"
-          ></iframe>
-        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-400 to-orange-500"></div>
       </div>
 
-      <div className="w-full max-w-md md:max-w-2xl mb-6 md:mb-8">
-        <div className="bg-white p-4 md:p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl md:text-2xl font-semibold text-gray-800 mb-3 md:mb-4">Send Us a Message</h2>
-          <form className="space-y-3 md:space-y-4" onSubmit={handleSubmit}>
-            <div>
-              <label className="block text-left text-gray-700 mb-0.5 md:mb-1 text-sm md:text-base" htmlFor="name">Name</label>
-              <input
-                type="text"
-                id="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full p-1.5 md:p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm md:text-base"
-                placeholder="Enter your name"
-                required
-              />
+      <div className="max-w-6xl mx-auto px-4 py-12">
+        {/* Contact Info Cards */}
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+            <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-orange-200 transition-colors">
+              <Phone className="w-6 h-6 text-orange-600" />
             </div>
-            <div>
-              <label className="block text-left text-gray-700 mb-0.5 md:mb-1 text-sm md:text-base" htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full p-1.5 md:p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm md:text-base"
-                placeholder="Enter your email"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-left text-gray-700 mb-0.5 md:mb-1 text-sm md:text-base" htmlFor="message">Message</label>
-              <textarea
-                id="message"
-                value={formData.message}
-                onChange={handleChange}
-                className="w-full p-1.5 md:p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm md:text-base"
-                rows="4"
-                placeholder="Enter your message"
-                required
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-orange-500 text-white p-1.5 md:p-2 rounded-lg hover:bg-orange-600 transition duration-300 text-base md:text-lg"
-            >
-              Send Message
-            </button>
-          </form>
-        </div>
-      </div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Call Us</h3>
+            <p className="text-gray-600 mb-1">Ready to help you</p>
+            <p className="text-orange-600 font-semibold">(254) 710-678-753</p>
+          </div>
 
-      <div className="w-full max-w-md md:max-w-2xl">
-        <div className="bg-white p-4 md:p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl md:text-2xl font-semibold text-gray-800 mb-3 md:mb-4">Follow Us</h2>
-          <div className="flex justify-center space-x-3 md:space-x-4">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-              <PiFacebookLogoDuotone className="text-gray-600 hover:text-gray-800 w-5 h-5 md:w-6 md:h-6" />
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-              <PiTwitterLogoDuotone className="text-gray-600 hover:text-gray-800 w-5 h-5 md:w-6 md:h-6" />
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-              <PiInstagramLogoDuotone className="text-gray-600 hover:text-gray-800 w-5 h-5 md:w-6 md:h-6" />
-            </a>
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+            <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-orange-200 transition-colors">
+              <Mail className="w-6 h-6 text-orange-600" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Email Us</h3>
+            <p className="text-gray-600 mb-1">Drop us a line</p>
+            <p className="text-orange-600 font-semibold">info@malibuseafood.com</p>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+            <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-orange-200 transition-colors">
+              <MapPin className="w-6 h-6 text-orange-600" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Visit Us</h3>
+            <p className="text-gray-600 mb-1">Come say hello</p>
+            <p className="text-orange-600 font-semibold">Kenyatta Ave. Nairobi.</p>
+          </div>
+        </div>
+
+        {/* Main Content Grid */}
+        <div className="grid lg:grid-cols-2 gap-12">
+          {/* Contact Form */}
+          <div className="bg-white p-8 rounded-2xl shadow-xl">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-gray-800 mb-2">Send us a message</h2>
+              <p className="text-gray-600">Fill out the form below and we'll get back to you shortly.</p>
+            </div>
+
+            <div className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+                    placeholder="John Doe"
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700" htmlFor="phone">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+                    placeholder="(123) 456-7890"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700" htmlFor="email">
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+                  placeholder="johndoe@example.com"
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700" htmlFor="subject">
+                  Subject *
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+                  placeholder="How can we help you?"
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700" htmlFor="message">
+                  Message *
+                </label>
+                <textarea
+                  id="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows="5"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 resize-none"
+                  placeholder="Tell us more about your inquiry..."
+                  required
+                />
+              </div>
+
+              <button
+                type="button"
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-orange-600 hover:to-orange-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span>Sending...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" />
+                    <span>Send Message</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Right Side Content */}
+          <div className="space-y-8">
+            {/* Map */}
+            <div className="bg-white p-6 rounded-2xl shadow-xl">
+              <h3 className="text-xl font-bold text-gray-800 mb-4">Find Us Here</h3>
+              <div className="h-64 rounded-lg overflow-hidden shadow-lg">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3301.42410580s086!2d-118.68942468478436!3d34.038507180609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80e81ee3334d01c7:0x9e77a6c822213118!2sMalibu%20Seafood%20Fresh%20Fish%20Market%20and%20Patio%20Cafe!5e0!3m2!1sen!2sus!4v1647475730711!5m2!1sen!2sus"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  title="Malibu Seafood on Google Maps"
+                  className="hover:grayscale-0 grayscale-[20%] transition-all duration-300"
+                ></iframe>
+              </div>
+            </div>
+
+            {/* Business Hours */}
+            <div className="bg-white p-6 rounded-2xl shadow-xl">
+              <div className="flex items-center mb-4">
+                <Clock className="w-6 h-6 text-orange-600 mr-2" />
+                <h3 className="text-xl font-bold text-gray-800">Business Hours</h3>
+              </div>
+              <div className="space-y-2 text-gray-600">
+                <div className="flex justify-between">
+                  <span>Monday - Thursday</span>
+                  <span className="font-semibold">11:00 AM - 9:00 PM</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Friday - Saturday</span>
+                  <span className="font-semibold">11:00 AM - 10:00 PM</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Sunday</span>
+                  <span className="font-semibold">12:00 PM - 8:00 PM</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Social Media */}
+            <div className="bg-white p-6 rounded-2xl shadow-xl">
+              <div className="flex items-center mb-4">
+                <Users className="w-6 h-6 text-orange-600 mr-2" />
+                <h3 className="text-xl font-bold text-gray-800">Follow Us</h3>
+              </div>
+              <p className="text-gray-600 mb-4">Stay connected with us on social media for updates and special offers.</p>
+              <div className="flex space-x-4">
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center hover:bg-orange-200 transition-all duration-200 hover:scale-110 group"
+                >
+                  <Facebook className="w-6 h-6 text-orange-600 group-hover:text-orange-700" />
+                </a>
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center hover:bg-orange-200 transition-all duration-200 hover:scale-110 group"
+                >
+                  <Twitter className="w-6 h-6 text-orange-600 group-hover:text-orange-700" />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center hover:bg-orange-200 transition-all duration-200 hover:scale-110 group"
+                >
+                  <Instagram className="w-6 h-6 text-orange-600 group-hover:text-orange-700" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fade-in-up {
+          animation: fade-in-up 0.8s ease-out forwards;
+        }
+        
+        .animation-delay-200 {
+          animation-delay: 0.2s;
+          opacity: 0;
+        }
+      `}</style>
     </div>
   );
 }
