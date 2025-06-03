@@ -1,9 +1,12 @@
+import { image } from 'framer-motion/m';
 import React, { useState, useRef, useEffect } from 'react';
+import wineDine from '../assets/images/wine-dine.jpg';
 
 // Mock images for demonstration - replace with your actual imports
 const grilledFishSalad = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=400&fit=crop';
 const searedTunaSteak = 'https://images.unsplash.com/photo-1534766555764-ce878a5e3a2b?w=400&h=400&fit=crop';
-const shrimpCeviche = 'https://images.unsplash.com/photo-1559737558-2f5a35860aa1?w=400&h=400&fit=crop';
+
+
 
 function Menu() {
   const [currentItem, setCurrentItem] = useState(0);
@@ -39,7 +42,7 @@ function Menu() {
       carbs: '15g', 
       protein: '20g', 
       fat: '5g', 
-      img: shrimpCeviche, 
+      img: wineDine, 
       ingredients: 'shrimp, lime, cilantro, avocado, red onions' 
     },
   ];
@@ -257,7 +260,7 @@ function Menu() {
             </div>
           )}
           
-          <p className="text-sm md:text-lg text-gray-600 mb-1 md:mb-2 mt-4">Ingredients:</p>
+          <p className="text-xl md:text-2xl font-bold text-gray-700 mb-1 md:mb-2 mt-4">Ingredients:</p>
           <p className="text-sm md:text-xl text-gray-700 mb-4 md:mb-8 leading-relaxed">{menuItems[currentItem].ingredients}</p>
 
           {/* Nutritional Info */}

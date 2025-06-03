@@ -38,7 +38,7 @@ function Home() {
 
         {/* Call to Action Button */}
         <MotionLink
-          to="/reservation"
+          to="/reservations"
           className="bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition duration-300 text-lg font-semibold"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
