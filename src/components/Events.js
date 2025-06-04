@@ -212,9 +212,7 @@ function Events() {
             return (
               <motion.div
                 key={index}
-                className={`bg-white rounded-lg shadow-lg overflow-hidden flex flex-col relative cursor-pointer ${
-                  isCurrentDay ? 'border-4 border-orange-500' : 'border border-gray-200'
-                }`}
+                className={`relative flex flex-col justify-end bg-white rounded-3xl shadow-2xl overflow-hidden transition-all duration-300 ${isCurrentDay ? 'border-4 border-orange-500' : 'border border-gray-200'} min-h-[420px] h-full`}
                 variants={cardVariants}
                 whileHover="hover"
                 onHoverStart={() => setHoveredCard(index)}
@@ -225,11 +223,11 @@ function Events() {
                 <AnimatePresence>
                   {isCurrentDay && (
                     <motion.div
-                      className="absolute top-4 right-4 z-10"
+                      className="absolute top-4 right-4 z-20"
                       initial={{ scale: 0, rotate: -180 }}
                       animate={{ scale: 1, rotate: 0 }}
                       exit={{ scale: 0, rotate: 180 }}
-                      transition={{ duration: 0.5, ease: "easeOut" }}
+                      transition={{ duration: 0.5, ease: 'easeOut' }}
                     >
                       <motion.div
                         className="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg"
@@ -243,86 +241,100 @@ function Events() {
                   )}
                 </AnimatePresence>
 
-                {/* Image Container */}
-                <div className="relative overflow-hidden h-48">
-                  <motion.img 
-                    src={offer.image} 
-                    alt={`${offer.day} Offer`} 
+                {/* Background Image */}
+                <motion.img
+                  src={offer.image}
+                  alt={`${offer.day} Offer`}
+                  className="absolute inset-0 w-full h-full object-cover z-0"
+                  variants={imageVariants}
+                  initial="initial"
+                  animate={hoveredCard === index ? 'hover' : 'initial'}
+                />
+                {/* Blurred Gradient Overlay on Bottom Half */}
+                <div
+                  className="absolute inset-x-0 bottom-0 h-3/4 z-10 pointer-events-none"
+                  style={{
+                    WebkitMaskImage: 'linear-gradient(to top, black 70%, transparent 100%)',
+                    maskImage: 'linear-gradient(to top, black 70%, transparent 100%)',
+                    filter: 'blur(18px)',
+                  }}
+                >
+                  <img
+                    src={offer.image}
+                    alt="blurred background"
                     className="w-full h-full object-cover"
-                    variants={imageVariants}
-                    initial="initial"
-                    animate={hoveredCard === index ? "hover" : "initial"}
                   />
-                  
-                  {/* Overlay gradient */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0"
-                    animate={{ opacity: hoveredCard === index ? 1 : 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  
-                  {/* Day Badge */}
-                  <motion.div
-                    className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1"
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.2 + index * 0.1 }}
-                  >
-                    <span className="text-sm font-bold text-gray-800">{offer.day}</span>
-                  </motion.div>
                 </div>
+                {/* Semi-transparent dark overlay for extra readability */}
+                <div className="absolute inset-x-0 bottom-0 h-1/2 z-20 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
-                {/* Content */}
-                <div className="p-4 flex flex-col flex-grow">
-                  <motion.h2 
-                    className="text-xl md:text-2xl font-semibold text-gray-800 mb-2 flex-grow-0"
+                {/* Card Content Overlay (centered in blurred region) */}
+                <div className="absolute inset-x-0 bottom-10 z-30 flex flex-col items-center px-6 -pt-16 pb-2 w-full" style={{height: '50%'}}>
+                  {/* Title as Name */}
+                  <motion.h2
+                    className="text-2xl font-bold text-white mb-1 text-center flex items-center gap-2 drop-shadow-xl"
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.3 + index * 0.1 }}
                   >
                     {offer.title}
+                    {isCurrentDay && (
+                      <span className="ml-1 text-blue-300" title="Today">✔️</span>
+                    )}
                   </motion.h2>
-                  
-                  <motion.p 
-                    className="text-gray-600 text-sm md:text-base flex-grow mb-4"
+                  {/* Subtitle/Description */}
+                  <motion.p
+                    className="text-gray-100 text-base text-center mb-4 drop-shadow-md"
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.4 + index * 0.1 }}
                   >
                     {offer.description}
                   </motion.p>
-                  
+                  {/* Stats Row */}
+                  <div className="flex justify-center gap-6 w-full mb-6">
+                    <div className="flex flex-col items-center">
+                      <span className="text-orange-300 text-lg font-bold drop-shadow">{offer.day.slice(0,3)}</span>
+                      <span className="text-xs text-gray-200">Day</span>
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <span className="text-white text-lg font-bold drop-shadow">{offer.date.slice(5)}</span>
+                      <span className="text-xs text-gray-200">Date</span>
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <span className="text-green-300 text-lg font-bold drop-shadow">★</span>
+                      <span className="text-xs text-gray-200">Special</span>
+                    </div>
+                  </div>
+                  {/* Book Now Button */}
                   <motion.div
+                    className="w-full mt-auto"
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.5 + index * 0.1 }}
                   >
                     <Link to={`/reservations?date=${offer.date}`}>
-                      <motion.button 
-                        className="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition-colors duration-300 text-base md:text-lg font-medium w-full shadow-md"
+                      <motion.button
+                        className="w-full flex items-center justify-center gap-2 bg-white/90 text-gray-900 py-3 rounded-full text-lg font-semibold shadow-md hover:bg-orange-600 hover:text-white transition-colors duration-300"
                         variants={buttonVariants}
                         initial="initial"
                         whileHover="hover"
                         whileTap="tap"
                       >
-                        <motion.span className="flex items-center justify-center">
-                          Book Now
-                          <motion.span
-                            className="ml-2"
-                            animate={{ x: hoveredCard === index ? 5 : 0 }}
-                            transition={{ duration: 0.2 }}
-                          >
-                            →
-                          </motion.span>
+                        <span>Book Now</span>
+                        <motion.span
+                          animate={{ x: hoveredCard === index ? 5 : 0 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          →
                         </motion.span>
                       </motion.button>
                     </Link>
                   </motion.div>
                 </div>
-
                 {/* Hover Border Effect */}
                 <motion.div
-                  className="absolute inset-0 border-2 border-orange-500 rounded-lg opacity-0 pointer-events-none"
+                  className="absolute inset-0 border-2 border-orange-500 rounded-3xl opacity-0 pointer-events-none"
                   animate={{ opacity: hoveredCard === index ? 1 : 0 }}
                   transition={{ duration: 0.3 }}
                 />
