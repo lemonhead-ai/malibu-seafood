@@ -194,7 +194,7 @@ function Menu() {
 
   return (
     <div 
-      className="flex flex-col items-center justify-center min-h-screen p-4 md:p-6 bg-gradient-to-bl from-gray-50 to-gray-400 font-sans relative overflow-hidden"
+      className="flex flex-col items-center mt-8 justify-center min-h-screen p-4 md:p-6 bg-gradient-to-bl from-gray-50 to-gray-400 relative overflow-hidden"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -362,6 +362,8 @@ function Menu() {
           </div>
         </div>
 
+        
+
         {/* Details Section */}
         <div className={`
           details-section lg:w-1/2 w-full lg:pl-12 text-center lg:text-left mt-6 lg:mt-0
@@ -425,64 +427,54 @@ function Menu() {
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Controls - Desktop */}
-      <div className="absolute bottom-24 left-4 flex items-center space-x-4 hidden md:flex z-20">
-        <span className="text-base md:text-xl font-semibold text-gray-800">{`0${currentItem + 1}/${menuItems.length}`}</span>
-        
         {/* Enhanced Pagination dots with ring effect */}
-        <div className="flex space-x-3 md:space-x-4">
+        <div className="flex space-x-2 md:space-x-2 left-1/4 mb-0  ">
           {menuItems.map((_, index) => (
             <button
               key={index}
               className={`
                 pagination-dot w-3 h-3 md:w-4 md:h-4 rounded-full transition-all duration-300 hover:scale-125
-                ${currentItem === index ? 'active bg-orange-500 shadow-lg' : 'bg-gray-400 hover:bg-gray-500'}
+                ${currentItem === index ? 'active bg-orange-500 shadow-lg' : 'bg-gray-400 hover:bg-gray-600'}
               `}
               onClick={() => handleDotClick(index)}
               disabled={isTransitioning}
             />
           ))}
         </div>
+      </div>
+
+      {/* Controls - Desktop */}
+      <div className="absolute bottom-24 left-4 flex items-center space-x-1 hidden md:flex z-20">
+        <span className="text-base md:text-3xl font-bold text-gray-700">{`0${currentItem + 1}`}</span>
+        <span className='text-base md:text-xl font-semibold text-gray-500'>{`/${menuItems.length}`}</span>
         
         {/* Next button */}
         <button
           onClick={handleNext}
           disabled={isTransitioning}
-          className="text-gray-600 text-sm md:text-lg cursor-pointer focus:outline-none hover:text-orange-500 transition-colors duration-300 disabled:opacity-50"
+          className="text-gray-700 text-sm font-bold md:text-lg cursor-pointer focus:outline-none hover:text-orange-500 transition-colors duration-300 disabled:opacity-50"
         >
-          NEXT - {nextItem.name}
+          NEXT -
         </button>
+        <div
+        className='text-orange-500 text-sm md:text-lg'>
+        {nextItem.name}
+        </div>
       </div>
 
       {/* Controls - Mobile */}
       <div className="absolute bottom-24 left-4 flex items-center justify-center mt-2 md:hidden z-20">
         <span className="text-base md:text-xl font-semibold text-gray-800 mr-4">{`0${currentItem + 1}/${menuItems.length}`}</span>
-        
-        {/* Mobile Pagination dots */}
-        <div className="flex space-x-2">
-          {menuItems.map((_, index) => (
-            <button
-              key={index}
-              className={`
-                pagination-dot w-2 h-2 rounded-full transition-all duration-300
-                ${currentItem === index ? 'active bg-orange-500' : 'bg-gray-400'}
-              `}
-              onClick={() => handleDotClick(index)}
-              disabled={isTransitioning}
-            />
-          ))}
-        </div>
       </div>
 
       {/* Navigation arrows */}
       <button
         onClick={handlePrev}
         disabled={isTransitioning}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-50 rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 disabled:opacity-50 z-30"
+        className="absolute left-4 top-2/3 transform -translate-y-1/2 bg-gray-400 opacity-40 rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 disabled:opacity-50 z-30"
       >
-        <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-4 h-4 text-gray-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
       </button>
@@ -490,9 +482,9 @@ function Menu() {
       <button
         onClick={handleNext}
         disabled={isTransitioning}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 disabled:opacity-50 z-30"
+        className="absolute right-4 top-2/3 transform -translate-y-1/2 bg-gray-400 opacity-40 rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 disabled:opacity-50 z-30"
       >
-        <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-4 h-4 text-gray-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
         </svg>
       </button>

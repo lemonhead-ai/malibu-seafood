@@ -139,7 +139,7 @@ function Events() {
 
   return (
     <motion.div 
-      className="flex flex-col items-center min-h-screen p-4 md:p-6 bg-gradient-to-bl from-gray-50 to-gray-200 font-sans"
+      className="flex flex-col items-center mt-20 min-h-screen p-4 md:p-6 bg-gradient-to-bl from-gray-50 to-gray-400 font-sans"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -299,7 +299,7 @@ function Events() {
                   >
                     <Link to={`/reservations?date=${offer.date}`}>
                       <motion.button 
-                        className="bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors duration-300 text-base md:text-lg font-medium w-full shadow-md"
+                        className="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition-colors duration-300 text-base md:text-lg font-medium w-full shadow-md"
                         variants={buttonVariants}
                         initial="initial"
                         whileHover="hover"
@@ -340,11 +340,11 @@ function Events() {
         transition={{ delay: 1, duration: 0.8 }}
       >
         <motion.p
-          className="text-gray-600 text-sm md:text-base"
+          className="text-gray-600 text-sm mb-24 md:text-base"
           animate={{ y: [0, -5, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
-          Hover over cards to see them come alive! ✨
+          Hover over cards to see them come alive!
         </motion.p>
       </motion.div>
     </motion.div>

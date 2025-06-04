@@ -61,9 +61,9 @@ function ReservationPage() {
 
   // Testimonial rotation
   const testimonials = [
-    { text: "Absolutely incredible dining experience!", author: "Sarah M.", rating: 5 },
-    { text: "Perfect atmosphere for our anniversary", author: "John & Lisa", rating: 5 },
-    { text: "The chef's special was unforgettable", author: "Michael R.", rating: 5 },
+    { text: "Absolutely incredible dining experience!", author: "Martin M.", rating: 5 },
+    { text: "Perfect atmosphere for our anniversary", author: "Martin & Gina", rating: 5 },
+    { text: "The chef's special was unforgettable", author: "Mumo R.", rating: 5 },
   ];
 
   useEffect(() => {
@@ -187,8 +187,8 @@ function ReservationPage() {
       />
 
       {/* Header Section with animated elements */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-gray-900 via-gray-800 to-orange-900">
-        <div className="absolute inset-0 bg-black opacity-50"></div>
+      <div className="relative overflow-hidden bg-gradient-to-r to-gray-950 via-gray-600 from-orange-600">
+        <div className="absolute inset-0 bg-sky-200 opacity-25"></div>
         
         {/* Animated background shapes */}
         <div className="absolute inset-0">

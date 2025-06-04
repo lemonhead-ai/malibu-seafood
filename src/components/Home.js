@@ -9,30 +9,29 @@ const MotionLink = motion(Link);
 function Home() {
   return (
     <motion.div
-      className="flex flex-col md:flex-row h-screen bg-sky-950 text-white overflow-hidden"
+      className="flex flex-col md:flex-row h-screen bg-gray-600 text-white overflow-hidden"
     >
       {/* Left Section: Text and Button */}
       <div className="flex-1 flex flex-col items-start justify-center p-8 md:p-16 h-full overflow-y-auto">
 
         {/* Main Title */}
         <motion.h1
-          className="text-4xl md:text-6xl font-bold mb-4 text-left"
+          className="text-4xl md:text-6xl font-bold mb-2 text-left"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Experience Fresh <br className="hidden md:block" /> Malibu Seafood
+          Malibu  <br className="font-extrabold hidden md:block" /> Seafood
         </motion.h1>
 
         {/* Introduction Text */}
         <motion.p
-          className="text-lg md:text-xl text-gray-300 leading-relaxed mb-8 text-left"
+          className="text-lg md:text-xl text-gray-300 font-bold leading-relaxed mb-4 text-left"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Indulge in the freshest seafood delights at Malibu Seafood, where the ocean's bounty meets culinary excellence.
-          From grilled fish salads to succulent shrimp ceviche, our menu offers a taste of the coast crafted with love and skill.
+          Malibu Seafood, where the ocean's bounty meets culinary excellence.
           Join us for an unforgettable dining experience by the sea!
         </motion.p>
 

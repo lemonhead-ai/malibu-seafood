@@ -96,7 +96,7 @@ function Header() {
 
   return (
     <motion.header 
-      className={`flex justify-between items-center p-2 md:p-4 text-gray-950 md:text-base sticky top-0 z-50 backdrop-filter backdrop-blur-sm transition-all duration-300 ${
+      className={`flex justify-between items-center p-2 md:p-2 text-gray-950 md:text-base sticky top-0 z-50 backdrop-filter backdrop-blur-sm transition-all duration-300 ${
         isScrolled ? 'bg-gray-400 bg-opacity-20 shadow-lg' : 'bg-gray-400 bg-opacity-20'
       }`}
       variants={headerVariants}
@@ -205,53 +205,57 @@ function Header() {
       </motion.button>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            className="absolute top-full left-0 right-0 bg-white shadow-xl rounded-b-lg md:hidden"
-            variants={mobileMenuVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-          >
-            <div className="flex flex-col p-4 space-y-3">
-              {navItems.map((item, index) => (
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              className="absolute top-20 left-50 right-2 z-50 md:hidden"
+              variants={mobileMenuVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <div className="flex flex-col p-4 space-y-3">
+                {navItems.map((item, index) => (
+                  <motion.div
+                    key={item.path}
+                    initial={{ x: -50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: index * 0.1, duration: 0.3 }}
+                    className="bg-white/90 backdrop-filter backdrop-blur-md rounded-xl shadow-lg border border-white/90 transition-all duration-300"
+                  >
+                    <Link
+                      to={item.path}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`block px-4 py-3 rounded-xl ${
+                        isActive(item.path)
+                          ? 'bg-gray-700 text-white'
+                          : 'text-sky-950 hover:bg-orange-50 hover:text-orange-600'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  </motion.div>
+                ))}
+
+                {/* Reserve Button Card */}
                 <motion.div
-                  key={item.path}
                   initial={{ x: -50, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: index * 0.1, duration: 0.3 }}
+                  transition={{ delay: navItems.length * 0.1, duration: 0.3 }}
+                  className="bg-white/30 backdrop-blur-md rounded-xl shadow-lg border border-white/40 transition-all duration-300"
                 >
-                  <Link 
-                    to={item.path}
+                  <Link
+                    to="/reservations"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={`block px-4 py-3 rounded-lg transition-all duration-300 ${
-                      isActive(item.path)
-                        ? 'bg-gray-700 text-white'
-                        : 'text-sky-950 hover:bg-orange-50 hover:text-orange-600'
-                    }`}
+                    className="block bg-orange-500 text-white px-4 py-3 rounded-xl hover:bg-orange-600 transition-all duration-300 text-center"
                   >
-                    {item.label}
+                    Reserve
                   </Link>
                 </motion.div>
-              ))}
-              <motion.div
-                initial={{ x: -50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: navItems.length * 0.1, duration: 0.3 }}
-              >
-                <Link 
-                  to="/reservation"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block bg-orange-500 text-white px-4 py-3 rounded-lg hover:bg-orange-600 transition-all duration-300 text-center"
-                >
-                  Reserve
-                </Link>
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
     </motion.header>
   );
 }

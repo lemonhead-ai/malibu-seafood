@@ -29,9 +29,9 @@ function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-100">
+    <div className="min-h-screen bg-gradient-to-br mt-24 from-gray-200 via-white to-gray-200">
       {/* Header Section */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-orange-600 to-orange-700 text-white">
+      <div className="relative overflow-hidden bg-gradient-to-r from-gray-500 to-gray-500 text-white">
         <div className="absolute inset-0 bg-black bg-opacity-10"></div>
         <div className="relative max-w-6xl mx-auto px-4 py-16 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in-up">
