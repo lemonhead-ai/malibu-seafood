@@ -187,8 +187,8 @@ function ReservationPage() {
       />
 
       {/* Header Section with animated elements */}
-      <div className="relative overflow-hidden bg-gradient-to-r to-gray-950 via-gray-600 from-orange-600">
-        <div className="absolute inset-0 bg-sky-200 opacity-25"></div>
+      <div className="relative overflow-hidden bg-gradient-to-b from-gray-500">
+        <div className="absolute inset-0 bg-white opacity-25"></div>
         
         {/* Animated background shapes */}
         <div className="absolute inset-0">
@@ -204,15 +204,15 @@ function ReservationPage() {
                 <ChefHat className="w-10 h-10 text-white animate-bounce" style={{ animationDuration: '2s' }} />
               </div>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 animate-fade-in">
+            <h1 className="text-4xl md:text-6xl font-bold text-sky-950 mb-4 animate-fade-in">
               Reserve Your Table
             </h1>
-            <p className="text-xl text-orange-200 mb-8 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <p className="text-xl text-sky-900 mb-8 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.3s' }}>
               Experience culinary excellence in an intimate atmosphere. Book your perfect dining moment with us.
             </p>
             
             {/* Animated stats */}
-            <div className="flex justify-center space-x-8 text-orange-300">
+            <div className="flex justify-center space-x-8 text-orange-600">
               {[
                 { value: '4.9', label: 'Rating', icon: Star },
                 { value: '500+', label: 'Reviews', icon: Heart },

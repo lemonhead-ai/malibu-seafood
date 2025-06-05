@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-bl from-gray-50 to-gray-400 font-sans flex flex-col">
       <Header className="fixed top-0 z-50 w-full"/>
-      <main className="flex-grow -mt-20 -mb-14">
+      <main className="flex-grow -mt-20 -mb-12">
         <Routes>
           <Route 
             path="/" 

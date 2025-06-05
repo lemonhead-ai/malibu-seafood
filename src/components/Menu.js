@@ -465,7 +465,8 @@ function Menu() {
 
       {/* Controls - Mobile */}
       <div className="absolute bottom-24 left-4 flex items-center justify-center mt-2 md:hidden z-20">
-        <span className="text-base md:text-xl font-semibold text-gray-800 mr-4">{`0${currentItem + 1}/${menuItems.length}`}</span>
+        <span className="text-base md:text-3xl font-bold text-gray-700">{`0${currentItem + 1}`}</span>
+        <span className='text-base md:text-xl font-semibold text-gray-500'>{`/${menuItems.length}`}</span>
       </div>
 
       {/* Navigation arrows */}

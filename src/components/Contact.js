@@ -29,12 +29,12 @@ function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br mt-24 from-gray-200 via-white to-gray-200">
+    <div className="min-h-screen bg-gradient-to-br mt-0 from-gray-200 via-white to-gray-200">
       {/* Header Section */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-gray-500 to-gray-500 text-white">
+      <div className="relative overflow-hidden bg-gradient-to-b from-gray-500 text-sky-950">
         <div className="absolute inset-0 bg-black bg-opacity-10"></div>
         <div className="relative max-w-6xl mx-auto px-4 py-16 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in-up">
+          <h1 className="text-4xl md:text-5xl font-bold mt-6 mb-6 animate-fade-in-up">
             Get In Touch
           </h1>
           <p className="text-xl md:text-2xl opacity-90 animate-fade-in-up animation-delay-200">
