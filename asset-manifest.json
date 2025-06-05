@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/malibu-seafood/static/css/main.9fa28808.css",
+    "main.js": "/malibu-seafood/static/js/main.e93a9d96.js",
+    "static/media/hero-malibu.jpg": "/malibu-seafood/static/media/hero-malibu.21271c0b79c887e151d9.jpg",
+    "static/media/family-brunch.jpg": "/malibu-seafood/static/media/family-brunch.8ab8f5193174ffb0f3cd.jpg",
+    "static/media/shrimp-fest.jpg": "/malibu-seafood/static/media/shrimp-fest.18717edb0023aa06e2b7.jpg",
+    "static/media/seafood-sampler.jpg": "/malibu-seafood/static/media/seafood-sampler.c49a394f33b0a6dc1a6c.jpg",
+    "static/media/tacoTuesday.jpg": "/malibu-seafood/static/media/tacoTuesday.96ca5a0aed6415d90beb.jpg",
+    "static/media/fish-fry.jpg": "/malibu-seafood/static/media/fish-fry.a302466f0c588c1fb936.jpg",
+    "static/media/date-night.jpg": "/malibu-seafood/static/media/date-night.b7399ca682ffe100dd64.jpg",
+    "static/media/wine-dine.jpg": "/malibu-seafood/static/media/wine-dine.94447ec34a995587e72b.jpg",
+    "index.html": "/malibu-seafood/index.html",
+    "main.9fa28808.css.map": "/malibu-seafood/static/css/main.9fa28808.css.map",
+    "main.e93a9d96.js.map": "/malibu-seafood/static/js/main.e93a9d96.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9fa28808.css",
+    "static/js/main.e93a9d96.js"
+  ]
+}
